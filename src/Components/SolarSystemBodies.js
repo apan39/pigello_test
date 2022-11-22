@@ -43,14 +43,30 @@ function BodiesList(props) {
 }
 
 function ListItem(props) {
+  function isTypeMoon() {
+    
+    if (props.body.bodyType === "Moon") {
+      return (
+        <div> Orbits: {props.body.aroundPlanet.planet}</div>
+      );
+    }
+  }
   return (
     <>
       <RowStyle>
         {props.body.name}
+        {props.body && ( <div> Type: {props.body.bodyType}</div>)}
+        {props.body.moons && <div> Moons:</div>}
+
+        {isTypeMoon()}
+
+        <div>
         {props.body.moons &&
           props.body.moons.map((item, i) => (
             <ListSubItem key={i} item={item} />
           ))}
+          </div>
+
       </RowStyle>
     </>
   );
@@ -60,9 +76,7 @@ function ListSubItem(props) {
   return (
     <>
       <h1>listSubitem</h1>
-      <RowSubItemStyle>
-      {props.item.moon}
-      </RowSubItemStyle>
+      <RowSubItemStyle>{props.item.moon}</RowSubItemStyle>
     </>
   );
 }
