@@ -19,11 +19,12 @@ const storeExampleReducer = (state = INITIAL_STATE, action) => {
       return { ...state, payload };
     }
     case constants.ADD_BODY: {
+      console.log("payload", state)
       const newBodies = [
         ...payload.bodies,
         payload.body,
       ];
-      return { ...state, newBodies };
+      return { ...state, payload:newBodies };
     }
     default:
       return state;

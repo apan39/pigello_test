@@ -14,6 +14,7 @@ import {
 
 function SolarSystemBodies() {
   const state = useSelector((state) => state);
+  console.log("state", state);
   const systemBodies = state.exampleStore.payload;
   const [searchParams, setSearchParams] = useSearchParams();
   const dispatch = useDispatch();
