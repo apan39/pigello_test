@@ -5,17 +5,13 @@ import BodiesList from "./BodiesList";
 import { fetchBodies } from "../store/storeExample/actions";
 
 function SolarSystemBodies() {
-  const [bodies, setBodies] = useState([]);
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
   const state = useSelector((state) => state);
-  console.log("state", state);
-  //const systemBodies = state.solarSystemStore.payload;
+  const systemBodies = state.exampleStore.payload;
+  const [searchParams, setSearchParams] = useSearchParams();
+ 
   const dispatch = useDispatch();
 
   const query = () => {
-    searchParams && console.log("searchParams", searchParams.get("filter"));
     if (searchParams.get("filter")) {
       return "filter=" + searchParams.get("filter");
     }
@@ -28,20 +24,6 @@ function SolarSystemBodies() {
     dispatch(fetchBodies(query));
   }, [searchParams]);
 
-  useEffect(() => {
-    fetch(`https://api.le-systeme-solaire.net/rest/bodies}`)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        console.log(data);
-        setBodies(data.bodies);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
-
   function filterBodies(filter) {
     setSearchParams(filter);
   }
@@ -52,7 +34,7 @@ function SolarSystemBodies() {
 
   return (
     <div>
-      <h1>from solar system</h1>
+      <h1>Bodies in the solar system</h1>
 
       <select name="field-name" onChange={(e) => filterBodies(e.target.value)}>
         <option>Filter bodies</option>
@@ -63,7 +45,6 @@ function SolarSystemBodies() {
 
       <select
         name="field-name"
-        // value={props.timePeriod}
         onChange={(e) => sortBodies(e.target.value)}
       >
         <option>Sort bodies by:</option>
@@ -71,7 +52,7 @@ function SolarSystemBodies() {
         <option value="order=density">Density</option>
       </select>
 
-      {bodies && <BodiesList bodies={bodies} />}
+      {systemBodies && <BodiesList bodies={systemBodies} />}
     </div>
   );
 }
