@@ -30,3 +30,15 @@ export const fetchBodies = (query) => {
     });
   };
 };
+
+export const addBody = (bodies) => {
+  return async (dispatch) => {
+    console.log("boddy",  bodies)
+
+      dispatch({
+      type: constants.ADD_BODY,
+      payload: bodies,
+    });
+  };
+};
+
