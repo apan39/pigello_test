@@ -10,3 +10,23 @@ export const increaseCount = () => {
     });
   };
 };
+
+export const fetchBodies = (query) => {
+  return async (dispatch) => {
+
+    const response = await fetch(
+      `https://api.le-systeme-solaire.net/rest/bodies?${query()}`
+    )
+      .then((response) => {
+        return response.json();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    dispatch({
+      type: constants.FETCH_BODIES,
+      payload: response.bodies,
+    });
+  };
+};

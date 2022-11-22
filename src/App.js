@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+import { Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider as SCTheme } from "styled-components";
 
 import {
@@ -24,7 +25,9 @@ function App() {
   return (
     <SCTheme theme={theme}>
       <div className="App">
-      <SolarSystemBodies />
+        <Routes>
+          <Route path="/" element={<SolarSystemBodies />} />
+        </Routes>
       </div>
     </SCTheme>
   );
