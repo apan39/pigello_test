@@ -44,8 +44,6 @@ function SolarSystemBodies() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    //dispatch(addBody(inputs));
-    console.log("inputs", systemBodies);
     dispatch(
       addBody({
         body: {
