@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import ListStyle from "./Lists/ListStyle";
-import RowStyle from "./Lists/RowStyle";
-import RowSubItemStyle from "./Lists/RowSubItemStyle";
+import BodiesList from "./BodiesList";
+//import RowStyle from "./ListStyles/RowStyle";
+//import RowSubItemStyle from "./ListStyles/RowSubItemStyle";
 
 function SolarSystemBodies() {
   const [bodies, setBodies] = useState([]);
@@ -30,53 +30,53 @@ function SolarSystemBodies() {
 
 export default SolarSystemBodies;
 
-function BodiesList(props) {
-  return (
-    <>
-      <h1>Bodieslist</h1>
-      <ListStyle>
-        {props.bodies &&
-          props.bodies.map((body) => <ListItem key={body.id} body={body} />)}
-      </ListStyle>
-    </>
-  );
-}
+// function BodiesList(props) {
+//   return (
+//     <>
+//       <h1>Bodieslist</h1>
+//       <ListStyle>
+//         {props.bodies &&
+//           props.bodies.map((body) => <ListItem key={body.id} body={body} />)}
+//       </ListStyle>
+//     </>
+//   );
+// }
 
-function ListItem(props) {
-  function isTypeMoon() {
+// function ListItem(props) {
+//   function isTypeMoon() {
     
-    if (props.body.bodyType === "Moon") {
-      return (
-        <div> Orbits: {props.body.aroundPlanet.planet}</div>
-      );
-    }
-  }
-  return (
-    <>
-      <RowStyle>
-        {props.body.name}
-        {props.body && ( <div> Type: {props.body.bodyType}</div>)}
-        {props.body.moons && <div> Moons:</div>}
+//     if (props.body.bodyType === "Moon") {
+//       return (
+//         <div> Orbits: {props.body.aroundPlanet.planet}</div>
+//       );
+//     }
+//   }
+//   return (
+//     <>
+//       <RowStyle>
+//         {props.body.name}
+//         {props.body && ( <div> Type: {props.body.bodyType}</div>)}
+//         {props.body.moons && <div> Moons:</div>}
 
-        {isTypeMoon()}
+//         {isTypeMoon()}
 
-        <div>
-        {props.body.moons &&
-          props.body.moons.map((item, i) => (
-            <ListSubItem key={i} item={item} />
-          ))}
-          </div>
+//         <div>
+//         {props.body.moons &&
+//           props.body.moons.map((item, i) => (
+//             <ListSubItem key={i} item={item} />
+//           ))}
+//           </div>
 
-      </RowStyle>
-    </>
-  );
-}
+//       </RowStyle>
+//     </>
+//   );
+// }
 
-function ListSubItem(props) {
-  return (
-    <>
-      <h1>listSubitem</h1>
-      <RowSubItemStyle>{props.item.moon}</RowSubItemStyle>
-    </>
-  );
-}
+// function ListSubItem(props) {
+//   return (
+//     <>
+//       <h1>listSubitem</h1>
+//       <RowSubItemStyle>{props.item.moon}</RowSubItemStyle>
+//     </>
+//   );
+// }
