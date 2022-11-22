@@ -9,6 +9,7 @@ import {
   LabelStyle,
   InputStyle,
   InputSubmitStyle,
+  SelectStyle,
 } from "./FormStyles";
 
 function SolarSystemBodies() {
@@ -68,52 +69,90 @@ function SolarSystemBodies() {
     setIsShown((current) => !current);
   }
 
-
   return (
     <div>
-      <h1>Bodies in the solar system</h1>
-      <div>
-        <SpaceButton onClick={handleClick}>Add new planet </SpaceButton>
-        {/*show elements on click */}
-        {isShown && (
-          <FormDivStyle onSubmit={handleSubmit}>
-            <LabelStyle>
-              <InputStyle
-                type="text"
-                name="bodyname"
-                placeholder="Enter a body name"
-                value={inputs.bodyname || ""}
-                onChange={handleChange}
-              />
-            </LabelStyle>
-            <LabelStyle>
-              <InputStyle
-                type="text"
-                name="bodytype"
-                placeholder="Enter type"
-                value={inputs.bodytype || ""}
-                onChange={handleChange}
-              />
-            </LabelStyle>
-            <InputSubmitStyle type="submit" />
-          </FormDivStyle>
-        )}
+      <h1 style={{ marginLeft: "25px", marginTop: "30px" }}>
+        Solar System Bodies
+      </h1>
+      <div style={{ marginTop: "100px" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+          }}
+        >
+          <div>
+            <SpaceButton onClick={handleClick}>
+              Add new body
+            </SpaceButton>
+
+            {/*show elements on click */}
+            {isShown && (
+              <FormDivStyle onSubmit={handleSubmit}>
+                <LabelStyle>
+                  <InputStyle
+                    type="text"
+                    name="bodyname"
+                    placeholder="Enter a body name"
+                    value={inputs.bodyname || ""}
+                    onChange={handleChange}
+                  />
+                </LabelStyle>
+                <LabelStyle>
+                  <InputStyle
+                    type="text"
+                    name="bodytype"
+                    placeholder="Enter type"
+                    value={inputs.bodytype || ""}
+                    onChange={handleChange}
+                  />
+                </LabelStyle>
+                <InputSubmitStyle type="submit" />
+              </FormDivStyle>
+            )}
+          </div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginRight: "23px",
+              marginTop: "29px",
+            }}
+          >
+            <SelectStyle
+              name="field-name"
+              onChange={(e) => filterBodies(e.target.value)}
+            >
+              <option>Filter bodies</option>
+              <option value="">All bodies</option>
+              <option value="filter=isPlanet,eq,true">Planets</option>
+              <option value="filter=bodyType,eq,comet">Comets</option>
+              <option value="filter=bodyType,eq,asteroid">Asteroids</option>
+              <option value="filter=bodyType,eq,moon">Moons</option>
+              <option value="filter=bodyType,eq,dwarf+planet">
+                Dwarf planets
+              </option>
+            </SelectStyle>
+
+            <SelectStyle
+              name="field-name"
+              // value={props.timePeriod}
+              onChange={(e) => sortBodies(e.target.value)}
+            >
+              <option>Sort bodies by:</option>
+              <option value="order=name">Name</option>
+              <option value="order=density">Density</option>
+              <option value="order=inclination">inclination</option>
+              <option value="order=meanRadius">meanRadius</option>
+            </SelectStyle>
+          </div>
+        </div>
+        {systemBodies && <BodiesList bodies={systemBodies} />}
       </div>
-
-      <select name="field-name" onChange={(e) => filterBodies(e.target.value)}>
-        <option>Filter bodies</option>
-        <option value="">All bodies</option>
-        <option value="filter=isPlanet,eq,true">Planets</option>
-        <option value="filter=bodyType,eq,comet">Comets</option>
-      </select>
-
-      <select name="field-name" onChange={(e) => sortBodies(e.target.value)}>
-        <option>Sort bodies by:</option>
-        <option value="order=name">Name</option>
-        <option value="order=density">Density</option>
-      </select>
-
-      {systemBodies && <BodiesList bodies={systemBodies} />}
     </div>
   );
 }
