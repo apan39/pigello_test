@@ -6,6 +6,7 @@ import {
   increaseCount,
 } from "./store/storeExample";
 import theme from "./theme";
+import SolarSystemBodies from "./Components/SolarSystemBodies";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,15 +24,7 @@ function App() {
   return (
     <SCTheme theme={theme}>
       <div className="App">
-        <ExampleText> Redux example count: {count}</ExampleText>
-        <br />
-        <ExampleSmallText>
-          Last updated: {lastUpdated || "Never..."}
-        </ExampleSmallText>
-        <br />
-        <ExampleButton style={{ marginTop: 12 }} onClick={onIncrease}>
-          Click to increase
-        </ExampleButton>
+      <SolarSystemBodies />
       </div>
     </SCTheme>
   );
