@@ -10,10 +10,22 @@ function SolarSystemBodies() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const state = useSelector((state) => state);
+  console.log("state", state);
   //const systemBodies = state.solarSystemStore.payload;
   const dispatch = useDispatch();
+
+  const query = () => {
+    searchParams && console.log("searchParams", searchParams.get("filter"));
+    if (searchParams.get("filter")) {
+      return "filter=" + searchParams.get("filter");
+    }
+    if (searchParams.get("order")) {
+      return "order=" + searchParams.get("order");
+    }
+  };
+
   useEffect(() => {
-    dispatch(fetchBodies());
+    dispatch(fetchBodies(query));
   }, [searchParams]);
 
   useEffect(() => {
