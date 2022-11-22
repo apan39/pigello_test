@@ -1,11 +1,20 @@
 import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import BodiesList from "./BodiesList";
+import { fetchBodies } from "../store/storeExample/actions";
 
 function SolarSystemBodies() {
   const [bodies, setBodies] = useState([]);
 
   const [searchParams, setSearchParams] = useSearchParams();
+
+  const state = useSelector((state) => state);
+  //const systemBodies = state.solarSystemStore.payload;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchBodies());
+  }, [searchParams]);
 
   useEffect(() => {
     fetch(`https://api.le-systeme-solaire.net/rest/bodies}`)
@@ -38,7 +47,6 @@ function SolarSystemBodies() {
         <option value="">All bodies</option>
         <option value="filter=isPlanet,eq,true">Planets</option>
         <option value="filter=bodyType,eq,comet">Comets</option>
-
       </select>
 
       <select
@@ -49,7 +57,6 @@ function SolarSystemBodies() {
         <option>Sort bodies by:</option>
         <option value="order=name">Name</option>
         <option value="order=density">Density</option>
-
       </select>
 
       {bodies && <BodiesList bodies={bodies} />}

@@ -1,5 +1,7 @@
 export default {
   INCREASE_COUNT: "INCREASE_COUNT_EXAMPLE_STORE",
+  FETCH_BODIES: "FETCH_BODIES_BY_QUERY",
+
 
   STORE_NAME: "exampleStore",
 };

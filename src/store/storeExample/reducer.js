@@ -15,6 +15,9 @@ const storeExampleReducer = (state = INITIAL_STATE, action) => {
         lastUpdated: payload.lastUpdated,
       };
     }
+    case constants.FETCH_BODIES: {
+      return { ...state, payload };
+    }
     default:
       return state;
   }
